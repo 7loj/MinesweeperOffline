@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
-	int flagCounter = 16; ///////////////////////////////////
+	int flagCounter = 16; ////////////////////////////////////
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 			case 1:		//Left mouse button

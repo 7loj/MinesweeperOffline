@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
+	int flagCounter = 16; //////////////////////////////////
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 			case 1:		//Left mouse button
@@ -95,12 +96,14 @@ public class MyMouseAdapter extends MouseAdapter {
 							if ((gridX == 0) || (gridY == 0)) {
 								//On the left column and on the top row... do nothing
 							} else { //Finding Mines
-								if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(MyPanel.hiddenMineColor)) {
-									
+								if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(MyPanel.hiddenMineColor)) {									
 									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
 									GameOver.gameOverWindow();
 									GameOver.revealMines();//Initial testing
 								}else {
+									if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(Color.RED)){
+										flagCounter++;
+									}
 								//On the grid other than on the left column and on the top row:
 								Color newColor = Color.WHITE;
 								myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = newColor;
@@ -113,7 +116,8 @@ public class MyMouseAdapter extends MouseAdapter {
 				}
 				myPanel.repaint();
 				break;
-			case 3:		
+			case 3:	//Right mouse button
+				while (flagCounter > 0) {
 				Component d = e.getComponent();
 				while (!(d instanceof JFrame)) {
 					d = d.getParent();
@@ -154,12 +158,14 @@ public class MyMouseAdapter extends MouseAdapter {
 								newColor = Color.RED;
 								myPanel2.colorArray[myPanel2.mouseDownGridX][myPanel2.mouseDownGridY] = newColor;
 								myPanel2.repaint();
+								flagCounter--;
 							}
 						}
 					}
 				}
 				myPanel2.repaint();
 				break;
+				}
 			default:    //Some other button (2 = Middle mouse button, etc.)
 				//Do nothing
 				break;

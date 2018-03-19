@@ -6,11 +6,6 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 
 public class MyMouseAdapter extends MouseAdapter {
-	public static boolean lossBoolean = false;
-	public static boolean lossIndicator() {
-		lossBoolean = true;
-		return lossBoolean;
-	}
 	public void mousePressed(MouseEvent e) {
 		switch (e.getButton()) {
 			case 1:		//Left mouse button
@@ -100,10 +95,11 @@ public class MyMouseAdapter extends MouseAdapter {
 							if ((gridX == 0) || (gridY == 0)) {
 								//On the left column and on the top row... do nothing
 							} else { //Finding Mines
-								if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] == MyPanel.hiddenMineColor) {
+								if(myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY].equals(MyPanel.hiddenMineColor)) {
 									
 									myPanel.colorArray[myPanel.mouseDownGridX][myPanel.mouseDownGridY] = Color.BLACK;
-									GameOver.gameOverWindow(); //Initial testing
+									GameOver.gameOverWindow();
+									GameOver.revealMines();//Initial testing
 								}else {
 								//On the grid other than on the left column and on the top row:
 								Color newColor = Color.WHITE;

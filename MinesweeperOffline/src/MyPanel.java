@@ -16,7 +16,7 @@ public class MyPanel extends JPanel {
 	public int y = -1;
 	public int mouseDownGridX = 0;
 	public int mouseDownGridY = 0;
-	public Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
+	public static Color[][] colorArray = new Color[TOTAL_COLUMNS][TOTAL_ROWS];
     GameOver[] coordinateArray = new GameOver[18];
     static Color hiddenMineColor = new Color(192,192,193);//Mine color
 	Random generator = new Random();
@@ -97,21 +97,6 @@ public class MyPanel extends JPanel {
 	// It is partially implemented since the verify hasn't been discussed in class
 	// Verify that the coordinates in the parameters are valid.
 	// Also verifies if there are any mines around the x,y coordinate
-	
-	//public void revealAdjacent(int x, int y){
-		//if((x<0) || (y<0) || (x>=9) || (y>=9)){return;}
-
-		//else {
-			//colorArray[x][y] = Color.GRAY;
-			//revealAdjacent(x-1, y);
-			//revealAdjacent(x+1, y);
-			//revealAdjacent(x, y-1);
-			//revealAdjacent(x, y+1);
-		//}
-		
-		//System.out.println("Test");
-
-	//}
 	
 	public void revealAdjacentTiles(int x, int y) {
 		if((x<0) || (y<0) || (x>=9) || (y>=9)){

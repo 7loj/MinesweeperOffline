@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import javax.swing.JComponent;
@@ -20,6 +21,16 @@ public class GameOver extends JComponent {
 	gameOverFrame.add(gameOverWindow);
 	gameOverFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	gameOverFrame.setVisible(true);
+	}
+	
+	public static void revealMines() {
+		for(int x = 1; x < 10; x++) {
+			for(int y = 1; y < 10; y++) {
+				if(MyPanel.colorArray[x][y].equals(MyPanel.hiddenMineColor)) {
+					MyPanel.colorArray[x][y] = Color.BLACK;
+				}
+			}
+		}
 	}
 	
 }
